@@ -37,7 +37,7 @@ void main() {
       when(mockGetRandomNumberTrivia(any))
         .thenAnswer((_) async => Right(testNumberTrivia));
 
-      bloc.dispatch(GetTriviaForRandomNumber());
+      bloc.add(GetTriviaForRandomNumber());
 
       await untilCalled(mockGetRandomNumberTrivia(any));
 
@@ -56,7 +56,7 @@ void main() {
         ]
       ));
 
-      bloc.dispatch(GetTriviaForRandomNumber());
+      bloc.add(GetTriviaForRandomNumber());
     });
 
     test('should emit [Loading, Error] when getting data fails', () async {
@@ -71,7 +71,7 @@ void main() {
         ]
       ));
 
-      bloc.dispatch(GetTriviaForRandomNumber());
+      bloc.add(GetTriviaForRandomNumber());
     });
 
     test('should emit [Loading, Error] with proper message for the error', () async {
@@ -86,7 +86,7 @@ void main() {
         ]
       ));
 
-      bloc.dispatch(GetTriviaForRandomNumber());
+      bloc.add(GetTriviaForRandomNumber());
     });
   });
 
@@ -99,7 +99,7 @@ void main() {
       when(mockInputConverter.stringToUnsignedInteger(any))
         .thenReturn(Right(testNumberParsed));
 
-      bloc.dispatch(GetTriviaForConcreteNumber(testNumberString));
+      bloc.add(GetTriviaForConcreteNumber(testNumberString));
 
       await untilCalled(mockInputConverter.stringToUnsignedInteger(any));
 
@@ -117,7 +117,7 @@ void main() {
         ]
       ));
 
-      bloc.dispatch(GetTriviaForConcreteNumber(testNumberString));
+      bloc.add(GetTriviaForConcreteNumber(testNumberString));
     });
 
     test('should get data from the concrete use case', () async {
@@ -126,7 +126,7 @@ void main() {
       when(mockGetConcreteNumberTrivia(any))
         .thenAnswer((_) async => Right(testNumberTrivia));
 
-      bloc.dispatch(GetTriviaForConcreteNumber(testNumberString));
+      bloc.add(GetTriviaForConcreteNumber(testNumberString));
 
       await untilCalled(mockGetConcreteNumberTrivia(any));
 
@@ -147,7 +147,7 @@ void main() {
         ]
       ));
 
-      bloc.dispatch(GetTriviaForConcreteNumber(testNumberString));
+      bloc.add(GetTriviaForConcreteNumber(testNumberString));
     });
 
     test('should emit [Loading, Error] when getting data fails', () async {
@@ -164,7 +164,7 @@ void main() {
         ]
       ));
 
-      bloc.dispatch(GetTriviaForConcreteNumber(testNumberString));
+      bloc.add(GetTriviaForConcreteNumber(testNumberString));
     });
 
     test('should emit [Loading, Error] with proper message for the error', () async {
@@ -181,7 +181,9 @@ void main() {
         ]
       ));
 
-      bloc.dispatch(GetTriviaForConcreteNumber(testNumberString));
+      bloc.add(GetTriviaForConcreteNumber(testNumberString));
     });
   });
+
+  bloc.close();
 }

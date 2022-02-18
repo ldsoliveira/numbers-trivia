@@ -12,7 +12,7 @@ import 'package:numbers_trivia/features/number_trivia/domain/repositories/number
 import 'package:numbers_trivia/features/number_trivia/data/repositories/number_trivia_repository_impl.dart';
 import 'package:numbers_trivia/features/number_trivia/data/datasources/number_trivia_remote_data_source.dart';
 
-final sl = GetIt.instance;
+GetIt sl = GetIt.instance;
 
 Future<void> init() async {
   //! Features 
@@ -31,7 +31,7 @@ Future<void> init() async {
   sl.registerLazySingleton<NumberTriviaRepository>(() => NumberTriviaRepositoryImpl(
     remoteDataSource: sl(), 
     localDataSource: sl(), 
-    networkInfo: sl(),
+    networkInfo: NetworkInfoImpl(sl()),
   ));
 
   // Datasources
@@ -42,7 +42,6 @@ Future<void> init() async {
 
   //! Core
   sl.registerLazySingleton(() => InputConverter());
-  sl.registerLazySingleton(() => NetworkInfoImpl(sl()));
 
   //! External
   final sharedPreferences = await SharedPreferences.getInstance();

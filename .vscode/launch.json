@@ -11,9 +11,9 @@
       "program": "./test/"
     },
     {
-      "name": "numbers_trivia",
+      "name": "Launch Number Trivia",
       "request": "launch",
-      "type": "dart"
+      "type": "dart",
     },
     {
       "name": "numbers_trivia (profile mode)",
